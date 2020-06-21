@@ -8,10 +8,13 @@ var extractPlugin = new ExtractTextPlugin({
 });
 
 module.exports = {
-    entry: './src/js/app.js',
+    entry: {
+        script: './src/js/script.js',
+        pizzaInfo: './src/js/pizzaInfo.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
+        filename: '[name].js',
         // publicPath: '/dist'
     },
     module: {
@@ -55,7 +58,14 @@ module.exports = {
     plugins: [
         extractPlugin,
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            filename: "index.html",
+            template: 'src/index.html',
+            chunks: ['script']
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'stats.html',
+            template: 'src/stats.html',
+            chunks: ['pizzaInfo']
         }),
         new CleanWebpackPlugin(['dist'])
     ]
