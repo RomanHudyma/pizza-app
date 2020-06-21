@@ -13,9 +13,9 @@ module.exports = {
         pizzaInfo: './src/js/pizzaInfo.js'
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         filename: '[name].js',
-        // publicPath: '/dist'
+        publicPath: '/pizza-app/'
     },
     module: {
         rules: [
@@ -54,6 +54,6 @@ module.exports = {
             template: 'src/stats.html',
             chunks: ['pizzaInfo']
         }),
-        new CleanWebpackPlugin(['dist'])
+        new CleanWebpackPlugin(['build'])
     ]
 };
